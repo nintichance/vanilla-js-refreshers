@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--------------------
+Calculator
+
+Build a web calculator, that supports the basic operations of add, remove, multiply and divide.
+
+In addition, support resetting the current state, as well as a decimal point button.
+
+When you feel ready, you can validate your solution using any collaborative HTML/CSS renderer, such as this one.
+-------------------->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+      html{
+        height: 100%;
+        width: 100%;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: antiquewhite;
+      }
+      .calculator {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        display: flex;
+        height: 60vh;
+        width: 30vw;
+        background-color: aliceblue;  
+      }
+      .button-wrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 85%;
+      }
+      .input-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 15%;
+      }
+      input {
+        width: 100%;
+        padding-bottom: 40px;
+        margin: 10px;
+        color: black;
+        font-size: larger;
+      }
+      
+      .numbers {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .num {
+        width: 30%;
+        height: 20%;
+      }
+      .smooth-operators {
+        display: flex;
+        flex-direction: column
+      }
+    </style>
+</head>
+<body>
+  <div>
+    <div class="calculator">
+      <div class="input-wrapper">
+        <input/>
+      </div>
+      <div class="button-wrapper">
+        <div class="numbers">
+          <button class="num" id="one">1</button>
+          <button class="num" id="two">2</button>
+          <button class="num" id="three">3</button>
+          <button class="num" id="four">4</button>
+          <button class="num" id="five">5</button>
+          <button class="num" id="six">6</button>
+          <button class="num" id="seven">7</button>
+          <button class="num" id="eight">8</button>
+          <button class="num" id="nine">9</button>
+        </div>
+        <div class="smooth-operators">
+          <button class="operator" id="plus">+</button>
+          <button class="operator" id="minus">-</button>
+          <button class="operator" id="multiply">x</button>
+          <button class="operator" id="divide">%</button>
+          <button class="operator" id="equal">=</button>
+          <button class="operator" id="clear">C</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+    const buttons = document.querySelector('.button-wrapper')
+    const userInputs = []
+    const numbers = []
+    const input = document.querySelector('input')
+
+    buttons.addEventListener('click', (event)=>{
+      if(event.target.textContent === '=') {
+        userInputs.push(numbers.join())
+        numbers.splice(0, numbers.length)
+        input.value = performOperations(userInputs[1], parseInt(userInputs[0]), parseInt(userInputs[2]))
+      } else if (event.target.className === 'operator') {
+        userInputs.push(numbers.join())
+        userInputs.push(event.target.textContent)
+        numbers.splice(0, numbers.length)
+        input.value=''
+      } else if (event.target.className === 'num') {
+        input.value+=event.target.textContent
+        numbers.push(event.target.textContent)
+      } else if (event.target.id === 'clear') {
+        input.value=''
+      }
+    })
+
+    const performOperations = (operator, num1, num2) => {
+      console.log(operator, num1, num2)
+      if (operator === '+') {
+        return num1 + num2
+      } else if (operator === '-') {
+        return num1 - num2
+      } else if (operator === '*') {
+        return num1 * num2
+      } else if (operator === '%') {
+        return num1 / num2
+      }
+    }
+
+</script>
+</body>
+</html>
+
