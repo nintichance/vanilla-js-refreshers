@@ -4,32 +4,45 @@ const userInputs = []
 const numbers = []
 
 buttons.addEventListener('click', (event)=>{
-  console.log(event)
+  const emptyInputs = (arr) => {
+    arr.splice(0, arr.length)
+  }
+  const addToArr = (arr,val) => {
+    arr.push(val)
+  }
   if(event.target.textContent === '=') {
-    userInputs.push(numbers.join())
-    numbers.splice(0, numbers.length)
-    input.value = performOperations(userInputs[1], parseInt(userInputs[0]), parseInt(userInputs[2]))
+    addToArr(userInputs,numbers.join())
+    emptyInputs(numbers)
+    updateInput(performOperations(userInputs[1], parseInt(userInputs[0]), parseInt(userInputs[2])))
   } else if (event.target.textContent === 'C') {
-    input.value=''
-    userInputs.splice(0, userInputs.length)
-    numbers.splice(0, numbers.length)
+    updateInput('')
+    emptyInputs(userInputs)
+    emptyInputs(numbers)
   } else if (event.target.className === 'operator') {
-    userInputs.push(numbers.join())
-    userInputs.push(event.target.textContent)
-    numbers.splice(0, numbers.length)
-    input.value=''
+    addToArr(userInputs,numbers.join())
+    addToArr(userInputs,event.target.textContent)
+    emptyInputs(numbers)
+    updateInput('')
   } else if (event.target.className === 'num') {
-    input.value+=event.target.textContent
-    numbers.push(event.target.textContent)
+    updateInput(event.target.textContent, true)
+    addToArr(numbers,event.target.textContent)
   } 
 })
+
+const updateInput = (val, append=false) => {
+  if (append) {
+    input.value+=val
+  } else {
+    input.value = val
+  }
+}
 
 const performOperations = (operator, num1, num2) => {
   if (operator === '+') {
     return num1 + num2
   } else if (operator === '-') {
     return num1 - num2
-  } else if (operator === '*') {
+  } else if (operator === 'x') {
     return num1 * num2
   } else if (operator === '%') {
     return num1 / num2
