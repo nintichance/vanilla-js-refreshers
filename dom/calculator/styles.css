@@ -1,0 +1,56 @@
+html{
+  height: 100%;
+  width: 100%;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: antiquewhite;
+}
+.calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  display: flex;
+  height: 60vh;
+  width: 30vw;
+  background-color: aliceblue;  
+}
+.button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 85%;
+}
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15%;
+}
+input {
+  width: 100%;
+  padding-bottom: 40px;
+  margin: 10px;
+  color: black;
+  font-size: larger;
+}
+
+.numbers {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+.num {
+  width: 30%;
+  height: 20%;
+}
+.smooth-operators {
+  display: flex;
+  flex-direction: column
+}
